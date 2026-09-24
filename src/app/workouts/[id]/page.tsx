@@ -1,10 +1,15 @@
+
+
+import TodaysMyPlanButton from '@/components/workoutDetails/TodaysMyPlanButton';
+
 import { Workout } from '@/types/Workout';
+
 import Image from 'next/image';
 import React from 'react';
 import { CiCalendarDate, CiSaveDown2 } from 'react-icons/ci';
 import { FaRegCalendarPlus } from 'react-icons/fa';
 
-interface IBookDetailsPageProps{
+interface IWorkoutDetailsPageProps{
     params: Promise<{id: string}>
 }
 const getWorkouts = async() =>{
@@ -12,7 +17,7 @@ const getWorkouts = async() =>{
     const data = await response.json()
     return data
 }
-const BookDetailsPage = async({params}:IBookDetailsPageProps) => {
+const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
     const {id} = await params
     const workoutData = await getWorkouts()
     const workout = workoutData.find(
@@ -117,11 +122,7 @@ const BookDetailsPage = async({params}:IBookDetailsPageProps) => {
                     {/* Call-to-action buttons[cite: 1] */}
                     <div className="flex flex-wrap gap-4 pt-4">
                         {/* Primary button[cite: 1] */}
-                        <button className="flex items-center gap-2 px-6 py-3.5 bg-[#ccff00] text-black font-semibold rounded-lg hover:bg-[#b3e600] transition-colors">
-                            <FaRegCalendarPlus />
-                            Add to today`s plan
-                        </button>
-                        
+                        <TodaysMyPlanButton workout={workout}></TodaysMyPlanButton>
                         {/* Secondary button[cite: 1] */}
                         <button className="flex items-center gap-2 px-6 py-3.5 border border-gray-600 text-white font-semibold rounded-lg hover:bg-[#1f1f1f] transition-colors">
                             <CiSaveDown2 />
@@ -135,4 +136,4 @@ const BookDetailsPage = async({params}:IBookDetailsPageProps) => {
     );
 };
 
-export default BookDetailsPage;
+export default WorkoutDetailsPage;
