@@ -1,4 +1,5 @@
 "use client"
+import SavedCards from '@/components/shared/SavedCard';
 import TodaysPlanCard from '@/components/shared/TodaysPlanCard';
 import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
@@ -36,10 +37,10 @@ const ListedMyPlan = () => {
                 <div className="tab-content mt-6 space-y-4">
                     {
                         todaysWorkout.length > 0 ? (
-                            todaysWorkout.map((workout: Workout) =>{
+                            todaysWorkout.map((workout: Workout) => {
                                 return <TodaysPlanCard key={workout.id} workout={workout}></TodaysPlanCard>
                             })
-                        ):(
+                        ) : (
                             <div className='text-center'>
                                 <h2 className='font-semibold text-3xl'>Nothing here yet!</h2>
                                 <p className='text-slate-400'>Browse the library and add a lift to get today moving.</p>
@@ -50,13 +51,23 @@ const ListedMyPlan = () => {
                 </div>
 
                 <input type="radio" name="my_tabs_2" className="tab" aria-label="Saved" defaultChecked />
-                <div className="tab-content border-base-300 bg-base-100 p-10">
+                <div className="tab-content mt-6 space-y-4">
                     {
-
+                        saveLater.length > 0 ? (
+                            saveLater.map((workout: Workout) => {
+                                return <SavedCards key={workout.id} workout={workout}></SavedCards>
+                            })
+                        ) : (
+                            <div className='text-center'>
+                                <h2 className='font-semibold text-3xl'>Nothing here yet!</h2>
+                                <p className='text-slate-400'>Browse the library and add a lift to get today moving.</p>
+                                <button className='text-[#C2F800]'>Go to workouts</button>
+                            </div>
+                        )
                     }
                 </div>
 
-                
+
             </div>
 
         </div>
