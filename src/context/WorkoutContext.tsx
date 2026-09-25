@@ -3,7 +3,7 @@
 import React, { createContext, useState } from 'react';
 
 
-const WorkoutContext = createContext({})
+export const WorkoutContext = createContext({})
 
 const WorkoutProvider = ({children}:{children:React.ReactNode}) => {
     

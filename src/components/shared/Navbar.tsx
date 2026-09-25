@@ -31,7 +31,9 @@ const Navbar = () => {
                         <li>
                             <Link href="/">WORKOUTS</Link>
                         </li>
-                        <li><a>My Plan</a></li>
+                        <li>
+                            <Link href="/myplan">My Plan</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="navbar-end">

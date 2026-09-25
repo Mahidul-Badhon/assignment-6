@@ -1,5 +1,6 @@
 
 
+import SaveLaterButton from '@/components/workoutDetails/SaveLaterButton';
 import TodaysMyPlanButton from '@/components/workoutDetails/TodaysMyPlanButton';
 
 import { Workout } from '@/types/Workout';
@@ -124,10 +125,7 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                         {/* Primary button[cite: 1] */}
                         <TodaysMyPlanButton workout={workout}></TodaysMyPlanButton>
                         {/* Secondary button[cite: 1] */}
-                        <button className="flex items-center gap-2 px-6 py-3.5 border border-gray-600 text-white font-semibold rounded-lg hover:bg-[#1f1f1f] transition-colors">
-                            <CiSaveDown2 />
-                            Save for later
-                        </button>
+                        <SaveLaterButton workout={workout}></SaveLaterButton>
                     </div>
 
                 </div>
