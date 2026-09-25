@@ -1,9 +1,14 @@
+"use client"
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from "@/assets/logo.png"
 import Link from 'next/link';
+import { WorkoutContext } from '@/context/WorkoutContext';
 // import link from "@/app/page"
 const Navbar = () => {
+
+    const { todaysWorkout, saveLater } = useContext(WorkoutContext)
+
     return (
         <div className=' border-b border-slate-500'>
             <div className="navbar bg-black container mx-auto shadow-sm">
@@ -18,13 +23,15 @@ const Navbar = () => {
                             <li>
                                 <Link href="/">WORKOUTS</Link>
                             </li>
-                            <li><a>My plan</a></li>
+                            <li>
+                                <Link href="/myplan">My Plan</Link>
+                            </li>
                         </ul>
                     </div>
-                    
+
                     <Image src={logo} alt='Logo'></Image>
                     <a className="btn btn-ghost text-xl">FITLOG</a>
-                    
+
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -37,8 +44,15 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn">Saved</button>
-                    <button className="btn">Plan</button>
+                    <Link href="/myplan">
+                        <button className="btn bg-black border-0">Plan
+                            <span className='bg-[#C2F800] text-black rounded-full p-2'>{todaysWorkout.length}</span>
+                        </button>
+                        <button className="btn bg-black border-0 text-white">Saved
+                            <span className='border border-slate-400 bg-black rounded-3xl p-2'>{saveLater.length}</span>
+                        </button>
+                    </Link>
+
                 </div>
             </div>
         </div>

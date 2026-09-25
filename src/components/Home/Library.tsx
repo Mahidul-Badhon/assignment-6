@@ -2,7 +2,7 @@ import React from 'react';
 import WorkoutCard from '../shared/WorkoutCard';
 import { Workout } from '@/types/Workout';
 
-const getWorkouts = async() =>{
+const getWorkouts = async():Promise<Workout[]> =>{
     const response = await fetch("https://api.abcz.workers.dev/api/fitlog")
     const data = await response.json()
     return data

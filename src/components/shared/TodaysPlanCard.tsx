@@ -1,14 +1,26 @@
+"use client"
+import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { CiStar } from 'react-icons/ci';
 import { IoTimeOutline } from 'react-icons/io5';
 import { MdOutlineDone } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 import { TbFlameFilled } from 'react-icons/tb';
 
+
 const TodaysPlanCard = ({workout}: {workout: Workout}) => {
+    
+    const {todaysWorkout, settodaysWorkout} = useContext(WorkoutContext)
+    const [isDone, setIsDone] = useState(false)
+    
+    const handleRemove = () => {
+        const updatedPlan = todaysWorkout.filter((item: Workout) => item.id !== workout.id);
+        settodaysWorkout(updatedPlan);
+    }
+    
     return (
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 p-4 bg-[#222630] border border-gray-800 rounded-2xl w-full">
 
@@ -65,13 +77,16 @@ const TodaysPlanCard = ({workout}: {workout: Workout}) => {
                 </Link>
 
                 {/* Mark as Done Button[cite: 1, 8] */}
-                <button className="flex-1 xl:flex-none flex items-center justify-center gap-1 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-2 text-xs sm:text-sm font-bold text-black bg-[#ccff00] rounded-full hover:bg-[#b3e600] transition-colors whitespace-nowrap">
+                <button className="flex-1 xl:flex-none flex items-center justify-center gap-1 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-2 text-xs sm:text-sm font-bold text-black bg-[#ccff00] rounded-full hover:bg-[#b3e600] transition-colors whitespace-nowrap"
+                onClick={() =>setIsDone(true)}>
                     <MdOutlineDone />
-                    Mark as Done
+                    {isDone ? "Done":"Mark as Done"}
                 </button>
 
                 {/* Remove (X) Button[cite: 1, 8] */}
-                <button className="p-2.5 sm:p-2 text-gray-500 hover:text-white transition-colors shrink-0 ml-auto xl:ml-0">
+                <button
+                onClick={handleRemove}
+                className="p-2.5 sm:p-2 text-gray-500 hover:text-white transition-colors shrink-0 ml-auto xl:ml-0">
                     <RxCross2 />
                 </button>
             </div>

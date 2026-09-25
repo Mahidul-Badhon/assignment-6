@@ -8,16 +8,21 @@ import { FaRegCalendarPlus } from 'react-icons/fa';
 const SaveLaterButton = ({workout}:{workout:Workout}) => {
     
     const {saveLater, setsaveLater} = useContext(WorkoutContext)
+    const isSaved = saveLater.some((item: Workout) => item.id === workout.id)
+
 
     const handleSaveLater = () =>{
-        console.log("Selected workout", workout)
+        // console.log("Selected workout", workout)
         setsaveLater([...saveLater, workout])
         alert(`You have selected "${workout.name}"`)
     }
     return (
-        <button className="flex items-center gap-2 px-6 py-3.5 border border-gray-600 text-white font-semibold rounded-lg hover:bg-[#1f1f1f] transition-colors" onClick={()=>handleSaveLater()}>
+        <button 
+        disabled={isSaved}
+        className={`flex items-center gap-2 px-6 py-3.5 border border-gray-600 text-white font-semibold rounded-lg hover:bg-[#1f1f1f] transition-colors ${isSaved ? 'cursor-not-allowed' : 'cursor-pointer'}`} 
+        onClick={()=>handleSaveLater()}>
                             <CiSaveDown2 />
-                            Save for later
+                            {isSaved ? "Saved" : "Save for later"}
                         </button>
     );
 };
