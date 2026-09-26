@@ -30,8 +30,7 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
             {/* Two-column layout: stacks on mobile (1 column), side-by-side on desktop (2 columns)[cite: 1] */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
                 
-                {/* Left Side — Visual/Media[cite: 1] */}
-                {/* On mobile, this will stay on top[cite: 1] */}
+                
                 <div className="w-full h-75 lg:h-150 relative rounded-2xl overflow-hidden bg-[#141414]">
                     <Image
                         src={workout.image}
@@ -45,7 +44,6 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
     
                 <div className="flex flex-col space-y-8 lg:py-4">
                     
-                    {/* Title & Subtitle[cite: 1] */}
                     <div>
                         <h1 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-wide mb-4">
                             {workout.name}
@@ -55,7 +53,6 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                         </p>
                     </div>
 
-                    {/* Category tags[cite: 1] */}
                     <div className="flex flex-wrap gap-3">
                         {workout.muscleGroups.map((muscle, index) => (
                             <span
@@ -67,7 +64,6 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                         ))}
                     </div>
 
-                    {/* Key Specs table/panel using standard HTML table[cite: 1, 7] */}
                     <div className="bg-[#141414] border border-gray-800 rounded-xl overflow-hidden">
                         <table className="w-full text-sm">
                             <tbody>
@@ -103,12 +99,10 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                         </table>
                     </div>
 
-                    {/* INSTRUCTIONS section[cite: 1] */}
                     <div>
                         <h2 className="text-lg font-bold text-white uppercase mb-5 tracking-wide">
                             INSTRUCTIONS
                         </h2>
-                        {/* Ordered list[cite: 1] */}
                         <ol className="space-y-4 text-gray-400 text-[15px] list-decimal list-inside">
                             {workout.instructions.map((step, index) => (
                                 <li key={index} className="leading-relaxed pl-2 marker:text-gray-500 marker:font-bold">
@@ -118,11 +112,8 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                         </ol>
                     </div>
 
-                    {/* Call-to-action buttons[cite: 1] */}
                     <div className="flex flex-wrap gap-4 pt-4">
-                        {/* Primary button[cite: 1] */}
                         <TodaysMyPlanButton workout={workout}></TodaysMyPlanButton>
-                        {/* Secondary button[cite: 1] */}
                         <SaveLaterButton workout={workout}></SaveLaterButton>
                     </div>
 

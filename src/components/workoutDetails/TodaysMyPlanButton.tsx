@@ -1,7 +1,7 @@
 "use client"
 import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { FaRegCalendarPlus } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 

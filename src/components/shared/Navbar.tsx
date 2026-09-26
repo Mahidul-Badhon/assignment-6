@@ -4,13 +4,16 @@ import React, { useContext } from 'react';
 import logo from "@/assets/logo.png"
 import Link from 'next/link';
 import { WorkoutContext } from '@/context/WorkoutContext';
+import { useParams, usePathname } from 'next/navigation';
 // import link from "@/app/page"
 const Navbar = () => {
 
     const { todaysWorkout, saveLater } = useContext(WorkoutContext)
+    const pathname = usePathname()
+    const activePage = "bg-[#1a2600] text-[#C2F800] rounded-full"
 
     return (
-        <div className=' border-b border-slate-500'>
+        <div className=' border-b border-gray-800'>
             <div className="navbar bg-black container mx-auto shadow-sm">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -21,10 +24,10 @@ const Navbar = () => {
                             tabIndex={-1}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li>
-                                <Link href="/">WORKOUTS</Link>
+                                <Link href="/" className={pathname === '/' ? activePage : ''}>Workouts</Link>
                             </li>
                             <li>
-                                <Link href="/myplan">My Plan</Link>
+                                <Link href="/myplan" className={pathname === '/myplan' ? activePage : ''}>My Plan</Link>
                             </li>
                         </ul>
                     </div>
@@ -36,10 +39,10 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li>
-                            <Link href="/">WORKOUTS</Link>
+                            <Link href="/" className={pathname === '/' ? activePage : ''}>WORKOUTS</Link>
                         </li>
                         <li>
-                            <Link href="/myplan">My Plan</Link>
+                            <Link href="/myplan" className={pathname === '/myplan' ? activePage : ''}>My Plan</Link>
                         </li>
                     </ul>
                 </div>

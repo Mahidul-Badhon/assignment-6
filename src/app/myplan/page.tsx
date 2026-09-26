@@ -32,7 +32,7 @@ const ListedMyPlan = () => {
     const activeWorkouts = activeTab === "today" ? todaysWorkout : saveLater
     const sortedWorkouts = sortWorkouts(activeWorkouts)
 
-    // Calculate dynamic metrics for Today's Plan[cite: 1]
+
     const totalExercises = activeWorkouts.length
     const totalMinutes = activeWorkouts.reduce((acc, curr) => acc + curr.duration, 0)
     const totalCalories = activeWorkouts.reduce((acc, curr) => acc + curr.caloriesBurned, 0)
@@ -57,7 +57,6 @@ const ListedMyPlan = () => {
             </div>
 
 
-            {/* Tab Header & Sort Dropdown Row */}
             <div className='flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-4 mb-6 gap-4'>
                 
                 {/* Tabs */}
@@ -91,7 +90,6 @@ const ListedMyPlan = () => {
                 </div>
             </div>
 
-            {/* List Content Area[cite: 4, 5, 6] */}
             <div className="space-y-4 min-h-100">
                 {sortedWorkouts.length > 0 ? (
                     sortedWorkouts.map((workout: Workout) => (
@@ -100,7 +98,7 @@ const ListedMyPlan = () => {
                             : <SavedCards key={workout.id} workout={workout} />
                     ))
                 ) : (
-                    // Empty State[cite: 1, 4]
+                    
                     <div className='flex flex-col items-center justify-center h-64 border border-dashed border-gray-700 rounded-2xl'>
                         <h2 className='font-black text-2xl text-white uppercase tracking-wide'>Nothing here yet</h2>
                         <p className='text-gray-400 mt-2 mb-6'>Browse the library and add a lift to get today moving.</p>
