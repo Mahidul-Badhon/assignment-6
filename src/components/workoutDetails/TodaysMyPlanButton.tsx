@@ -3,6 +3,7 @@ import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
 import React, { useContext } from 'react';
 import { FaRegCalendarPlus } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const TodaysMyPlanButton = ({workout}:{workout:Workout}) => {
     
@@ -12,7 +13,7 @@ const TodaysMyPlanButton = ({workout}:{workout:Workout}) => {
     const handletodaysPlan = () =>{
         // console.log("Selected workout", workout)
         settodaysWorkout([...todaysWorkout, workout])
-        alert(`You have selected "${workout.name}"`)
+        toast(`"${workout.name}" selected for today's plan`)
     }
     return (
         <button 

@@ -3,22 +3,34 @@ import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { CiStar } from 'react-icons/ci';
 import { IoTimeOutline } from 'react-icons/io5';
 import { MdOutlineDone } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 import { TbFlameFilled } from 'react-icons/tb';
+import { toast } from 'react-toastify';
 
 
 const TodaysPlanCard = ({workout}: {workout: Workout}) => {
     
-    const {todaysWorkout, settodaysWorkout} = useContext(WorkoutContext)
-    const [isDone, setIsDone] = useState(false)
+    const {todaysWorkout, settodaysWorkout, doneWorkoutIds, setDoneWorkoutIds} = useContext(WorkoutContext)
+    const isDone = doneWorkoutIds.includes(workout.id);
     
     const handleRemove = () => {
         const updatedPlan = todaysWorkout.filter((item: Workout) => item.id !== workout.id);
         settodaysWorkout(updatedPlan);
+        if (isDone) {
+            setDoneWorkoutIds(doneWorkoutIds.filter(id => id !== workout.id));
+        }
+        toast(`${workout.name} has been removed`)
+    }
+
+    const handleMarkDone = () =>{
+        if (!isDone) {
+            setDoneWorkoutIds([...doneWorkoutIds, workout.id]);
+            toast(`${workout.name} has been marked as done`);
+        }
     }
     
     return (
@@ -78,7 +90,7 @@ const TodaysPlanCard = ({workout}: {workout: Workout}) => {
 
                 {/* Mark as Done Button[cite: 1, 8] */}
                 <button className="flex-1 xl:flex-none flex items-center justify-center gap-1 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-2 text-xs sm:text-sm font-bold text-black bg-[#ccff00] rounded-full hover:bg-[#b3e600] transition-colors whitespace-nowrap"
-                onClick={() =>setIsDone(true)}>
+                onClick={handleMarkDone}>
                     <MdOutlineDone />
                     {isDone ? "Done":"Mark as Done"}
                 </button>

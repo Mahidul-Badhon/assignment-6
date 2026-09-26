@@ -7,8 +7,6 @@ import { Workout } from '@/types/Workout';
 
 import Image from 'next/image';
 import React from 'react';
-import { CiCalendarDate, CiSaveDown2 } from 'react-icons/ci';
-import { FaRegCalendarPlus } from 'react-icons/fa';
 
 interface IWorkoutDetailsPageProps{
     params: Promise<{id: string}>
@@ -34,7 +32,7 @@ const WorkoutDetailsPage = async({params}:IWorkoutDetailsPageProps) => {
                 
                 {/* Left Side — Visual/Media[cite: 1] */}
                 {/* On mobile, this will stay on top[cite: 1] */}
-                <div className="w-full h-[300px] lg:h-[600px] relative rounded-2xl overflow-hidden bg-[#141414]">
+                <div className="w-full h-75 lg:h-150 relative rounded-2xl overflow-hidden bg-[#141414]">
                     <Image
                         src={workout.image}
                         alt={workout.name}

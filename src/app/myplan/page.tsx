@@ -41,17 +41,17 @@ const ListedMyPlan = () => {
         <div className='container mx-auto mt-7'>
             <h2 className='font-semibold text-4xl'>My Plan</h2>
             <p className='text-slate-500'>Cap of five lifts for today. Finish them, then load more.</p>
-            <div className='flex justify-between bg-[#222630] mt-9'>
+            <div className='grid grid-cols-3 gap-2 bg-[#222630] mt-9 p-3 rounded-md py-4'>
                 <div>
-                    <p>Exercises</p>
+                    <p className='text-slate-400'>Exercises</p>
                     <h2 className='text-[#C2F800] font-semibold text-3xl'>{totalExercises}</h2>
                 </div>
                 <div>
-                    <p>Minutes</p>
+                    <p className='text-slate-400'>Minutes</p>
                     <h2 className='text-white font-semibold text-3xl'>{totalMinutes}</h2>
                 </div>
                 <div>
-                    <p>Calories</p>
+                    <p className='text-slate-400'>Calories</p>
                     <h2 className='text-white font-semibold text-3xl'>{totalCalories}</h2>
                 </div>
             </div>
@@ -61,7 +61,7 @@ const ListedMyPlan = () => {
             <div className='flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-4 mb-6 gap-4'>
                 
                 {/* Tabs */}
-                <div className="flex bg-[#141414] p-1 rounded-lg w-max">
+                <div className="flex bg-[#141414] p-1 rounded-lg w-max mt-8">
                     <button 
                         onClick={() => setActiveTab("today")}
                         className={`px-6 py-2 rounded-md text-sm font-semibold transition-colors ${activeTab === "today" ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-white'}`}
@@ -76,8 +76,8 @@ const ListedMyPlan = () => {
                     </button>
                 </div>
 
-                {/* Sort Dropdown[cite: 1] */}
-                <div className='flex items-center gap-3'>
+
+                <div className='flex items-center gap-3 mt-5'>
                     <p className='text-sm text-gray-500 font-medium'>Sort By</p>
                     <select
                         value={sortBy}
@@ -92,7 +92,7 @@ const ListedMyPlan = () => {
             </div>
 
             {/* List Content Area[cite: 4, 5, 6] */}
-            <div className="space-y-4 min-h-[400px]">
+            <div className="space-y-4 min-h-100">
                 {sortedWorkouts.length > 0 ? (
                     sortedWorkouts.map((workout: Workout) => (
                         activeTab === "today" 

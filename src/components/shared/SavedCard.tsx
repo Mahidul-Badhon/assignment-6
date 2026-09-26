@@ -6,9 +6,9 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { CiStar } from 'react-icons/ci';
 import { IoTimeOutline } from 'react-icons/io5';
-import { MdOutlineDone } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 import { TbFlameFilled } from 'react-icons/tb';
+import { toast } from 'react-toastify';
 
 const SavedCards = ({workout}: {workout: Workout}) => {
     
@@ -17,6 +17,7 @@ const SavedCards = ({workout}: {workout: Workout}) => {
     const handleRemove = () => {
         const updatedSaved = saveLater.filter((item: Workout) => item.id !== workout.id);
         setsaveLater(updatedSaved);
+        toast(`${workout.name} has been removed`)
     }
 
     return (

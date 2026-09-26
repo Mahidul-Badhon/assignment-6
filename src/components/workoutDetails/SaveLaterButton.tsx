@@ -3,7 +3,7 @@ import { WorkoutContext } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
 import React, { useContext } from 'react';
 import { CiSaveDown2 } from 'react-icons/ci';
-import { FaRegCalendarPlus } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const SaveLaterButton = ({workout}:{workout:Workout}) => {
     
@@ -14,7 +14,7 @@ const SaveLaterButton = ({workout}:{workout:Workout}) => {
     const handleSaveLater = () =>{
         // console.log("Selected workout", workout)
         setsaveLater([...saveLater, workout])
-        alert(`You have selected "${workout.name}"`)
+        toast(`"${workout.name}" saved for later`)
     }
     return (
         <button 
